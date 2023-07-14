@@ -13,7 +13,7 @@ RUN apk add wget unzip && \
 FROM debian:buster-slim
 
 RUN apt update && apt upgrade -y \
-    && ca-certificates tzdata locales
+    && apt install -y ca-certificates tzdata locales \
     && update-locale lang=en_US.UTF-8 \
     && dpkg-reconfigure --frontend noninteractive locales \
     && useradd -m -d /home/container -s /bin/bash container
