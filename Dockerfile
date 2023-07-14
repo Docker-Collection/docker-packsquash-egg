@@ -1,4 +1,4 @@
-FROM alpine:3.18.2 as downloader
+FROM alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1 as downloader
 
 WORKDIR /download
 
@@ -10,7 +10,7 @@ RUN apk add wget unzip && \
     unzip archive.zip && \
     chmod +x packsquash
 
-FROM debian:buster-slim
+FROM debian:buster-slim@sha256:cddb688e1263b9752275b064171ef6ac9c70ae21a77c774339aecfb53690b9a1
 
 RUN apt update && apt upgrade -y \
     && apt install -y ca-certificates tzdata locales iproute2  \
