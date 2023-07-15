@@ -1,0 +1,42 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-07-15T17:28:03+08:00",
+    "name": "PackSquash",
+    "author": "Efina",
+    "description": "PackSquash for pack the resourcepack!",
+    "features": null,
+    "docker_images": {
+        "ghcr.io\/docker-collection\/packsquash-egg:latest": "ghcr.io\/docker-collection\/packsquash-egg:latest"
+    },
+    "file_denylist": [],
+    "startup": "packsquash {{OPTION_FILE}}",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \" generated, \"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/ash\r\n# PackSquash Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server || exit\r\nif [ ! -f \"${OPTION_FILE}\" ]; then\r\necho \"PackSquash config does not exist, making a default one...\"\r\necho -e \"pack_directory = '.'\\noutput_file_path = 'pack.zip'\" > \"${OPTION_FILE}\"\r\nfi",
+            "container": "ghcr.io\/pterodactyl\/installers:alpine",
+            "entrypoint": "ash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Option file",
+            "description": "PackSquash config file",
+            "env_variable": "OPTION_FILE",
+            "default_value": "packsquash.toml",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        }
+    ]
+}
